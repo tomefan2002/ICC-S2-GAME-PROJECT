@@ -13,7 +13,7 @@ let ball = new Ball;
 let gameStart = true;
 let gameLoss = false;
 let hardMode = false;
-let score = 0; 
+let score = 0;
 
 function preload() {
     bg = loadImage('images/Sky.png');
@@ -25,12 +25,12 @@ function preload() {
     ballimg = loadImage('images/fireball.png');
     //IMAGE REFERANCE: https://minecraft.novaskin.me/skin/1683293096/8-Bit-Fireball
     myFont = loadFont('assets/MontserratMediumItalic.otf');
-        //FONT REFERANCE: https://www.fontspace.com/montserrat-font-f16544
+    //FONT REFERANCE: https://www.fontspace.com/montserrat-font-f16544
 }
 
 function setup() {
     createCanvas(600, 600);
-    
+    frameRate(60);  
     for (let row = 0; row < 3; row++) {
         for (let column = 0; column < 8; column++) {
             let block = new Block(column, row);
@@ -40,7 +40,7 @@ function setup() {
 }
 
 function draw() {
-   
+
     if (gameStart == true) {
         background(bg);
         fill(255);
@@ -59,7 +59,7 @@ function draw() {
         text('Press 1 for Easy Mode', 20, 450);
         text('Press 2 for Hard Mode', 20, 490);
     } else {
-        levelBegin(); 
+        levelBegin();
     }
 
     keyPressed();
@@ -73,12 +73,12 @@ function levelBegin() {
     stroke(1);
     strokeWeight(3);
     fill(255);
-    text("Score: " + score, 490,550);
+    text("Score: " + score, 490, 550);
 
     ball.movementBall();
     ball.displayBall();
     ballCollisions();
-    image(ballimg, ball.ballX - 16, ball.ballY - 16); 
+    image(ballimg, ball.ballX - 16, ball.ballY - 16);
 
     for (let blockindex = 0; blockindex < blocks.length; blockindex++) {
         let block = blocks[blockindex];
@@ -96,9 +96,9 @@ function levelBegin() {
         platform.right();
     }
 
-    if(score == 24) {
+    if (score == 24) {
         fill(255);
-        text("Winner! Press space to restart", width/2 - 145, height/2);
+        text("Winner! Press space to restart", width / 2 - 145, height / 2);
     }
 }
 
@@ -117,12 +117,15 @@ function ballCollisions() {
             score++;
         }
     }
+
     if (ball.ballX > width - ball.diameter || ball.ballX < ball.diameter) {
         ball.ballXSpeed = -ball.ballXSpeed;
     }
+
     if (ball.ballY < ball.diameter) {
         ball.ballYSpeed = - ball.ballYSpeed;
     }
+    
     if (ball.ballY > height - ball.diameter) {
         fill(255);
         text("You lose! Press space to restart", width / 2 - 145, height / 2);
@@ -131,7 +134,7 @@ function ballCollisions() {
 }
 
 function keyPressed() {
-    if(gameStart == true && key == '1'){
+    if (gameStart == true && key == '1') {
         gameLoss = false;
         gameStart = false;
         hardMode = false;
@@ -139,26 +142,26 @@ function keyPressed() {
         score = 0;
 
     }
-    if(gameStart == true && key == '2'){
+    if (gameStart == true && key == '2') {
         gameLoss = false;
         gameStart = false;
         hardMode = true;
         resetHard();
         score = 0;
     }
-    if(gameLoss == true && key == ' '){
+    if (gameLoss == true && key == ' ') {
         gameStart = true;
     }
-    if(score == 24 && key == ' '){
-        gameLoss = true; 
+    if (score == 24 && key == ' ') {
+        gameLoss = true;
     }
 }
 
 function resetEasy() {
 
-    for(let b = 0; b < blocks.length - 1; b++) {
+    for (let b = 0; b < blocks.length - 1; b++) {
         let block = blocks[b];
-        block.visible = true; 
+        block.visible = true;
     }
 
     ball.ballXSpeed = 4;
@@ -170,20 +173,20 @@ function resetEasy() {
 }
 
 function resetHard() {
-   
-    for(let b = 0; b < blocks.length - 1; b++) {
+
+    for (let b = 0; b < blocks.length - 1; b++) {
         let block = blocks[b];
-        block.visible = true; 
+        block.visible = true;
     }
     ball.resetBall();
     platform.resetPlat();
 
     ball.ballY = 240;
-    ball.ballXSpeed = 6;
-    ball.ballYSpeed = 5.25;
+    ball.ballXSpeed = 7;
+    ball.ballYSpeed = 8;
     ball.ballYSpeed = - ball.ballYSpeed;
 
     platform.PlatSpeed = 10;
 
-   
+
 }
