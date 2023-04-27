@@ -103,7 +103,7 @@ function levelBegin() {
 }
 
 function ballCollisions() {
-    if (dist(ball.ballX, ball.ballY, platform.PlatX, platform.PlatY + 12) < ball.diameter * 2) {
+    if (dist(ball.ballX, ball.ballY, platform.PlatX + 4, platform.PlatY + 12) < ball.diameter * 2) {
         ball.ballYSpeed = -ball.ballYSpeed;
     }
 
