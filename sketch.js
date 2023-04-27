@@ -48,7 +48,7 @@ function draw() {
         textSize(30);
         stroke(0);
         strokeWeight(4);
-        text('Atari Breakout clone', 20, 50);
+        text('Atari Breakout Clone', 20, 50);
         textSize(20);
         text('Semester 2 Introduction to Creative Coding Project', 20, 90);
         text('By Thomas Lynn 21016998 ', 20, 130);
