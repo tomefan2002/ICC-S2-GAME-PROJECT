@@ -5,7 +5,7 @@ class Ball {
         this.ballY = 300;
         this.ballXSpeed = 4;
         this.ballYSpeed = -3.5;
-        this.ballFillR = 3; 
+        this.ballFillR = 3;
         this.ballFillG = 244;
         this.ballFillB = 252;
 
@@ -25,11 +25,4 @@ class Ball {
         this.ballX = 300;
         this.ballY = 300;
     }
-
-    resetBallHard() {
-        this.ballX = 300;
-        this.ballY = 300;
-        fill(252, 3, 61, 70);
-    }
-
 }

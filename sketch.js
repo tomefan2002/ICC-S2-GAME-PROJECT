@@ -30,7 +30,7 @@ function preload() {
 
 function setup() {
     createCanvas(600, 600);
-    frameRate(60);  
+    frameRate(60);
     for (let row = 0; row < 3; row++) {
         for (let column = 0; column < 8; column++) {
             let block = new Block(column, row);
@@ -125,7 +125,7 @@ function ballCollisions() {
     if (ball.ballY < ball.diameter) {
         ball.ballYSpeed = - ball.ballYSpeed;
     }
-    
+
     if (ball.ballY > height - ball.diameter) {
         fill(255);
         text("You lose! Press space to restart", width / 2 - 145, height / 2);
