@@ -12,7 +12,7 @@ class Ball {
     }
 
     displayBall() {
-        fill(this.ballFillR, this.ballFillG, this.ballFillB, 70);
+        fill(this.ballFillR, this.ballFillG, this.ballFillB);
         ellipse(this.ballX, this.ballY, this.diameter);
     }
 

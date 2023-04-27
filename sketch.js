@@ -1,3 +1,8 @@
+let bg;
+let brickbg;
+let platimg;
+let ballimg;
+let myFont;
 let blocks = [];
 let PlatX = 600 / 2;
 let PlatY = 600 * 0.75;
@@ -7,11 +12,25 @@ let platform = new Platform;
 let ball = new Ball;
 let gameStart = true;
 let gameLoss = false;
+let hardMode = false;
 let score = 0; 
+
+function preload() {
+    bg = loadImage('images/Sky.png');
+    //IMAGE REFERANCE: https://rare-gallery.com/471923-super-mario-super-mario-bros-video-games-pixel-art.html 
+    brickbg = loadImage('images/brick.png');
+    //IMAGE REFERANCE: https://www.pinterest.co.uk/pin/316659417547639010/  
+    platimg = loadImage('images/platBrick01.png');
+    //IMAGE REFERANCE: https://www.pinterest.co.uk/pin/316659417547639010/  
+    ballimg = loadImage('images/fireball.png');
+    //IMAGE REFERANCE: https://minecraft.novaskin.me/skin/1683293096/8-Bit-Fireball
+    myFont = loadFont('assets/MontserratMediumItalic.otf');
+        //FONT REFERANCE: https://www.fontspace.com/montserrat-font-f16544
+}
 
 function setup() {
     createCanvas(600, 600);
-
+    
     for (let row = 0; row < 3; row++) {
         for (let column = 0; column < 8; column++) {
             let block = new Block(column, row);
@@ -23,8 +42,9 @@ function setup() {
 function draw() {
    
     if (gameStart == true) {
-        background(200);
+        background(bg);
         fill(255);
+        textFont(myFont);
         textSize(30);
         stroke(0);
         strokeWeight(4);
@@ -44,11 +64,12 @@ function draw() {
 
     keyPressed();
     console.log(gameStart);
+    console.log(hardMode);
 }
 
 function levelBegin() {
 
-    background(200);
+    background(bg);
     stroke(1);
     strokeWeight(3);
     fill(255);
@@ -57,6 +78,7 @@ function levelBegin() {
     ball.movementBall();
     ball.displayBall();
     ballCollisions();
+    image(ballimg, ball.ballX - 16, ball.ballY - 16); 
 
     for (let blockindex = 0; blockindex < blocks.length; blockindex++) {
         let block = blocks[blockindex];
@@ -64,6 +86,7 @@ function levelBegin() {
     }
 
     platform.displayPlat();
+    image(platimg, platform.PlatX - 32.5, platform.PlatY);
 
     if (keyIsDown(LEFT_ARROW)) {
         platform.left();
@@ -75,7 +98,7 @@ function levelBegin() {
 
     if(score == 24) {
         fill(255);
-        text("Winner Winner press space to restart", width/2 - 140, height/2);
+        text("Winner! Press space to restart", width/2 - 145, height/2);
     }
 }
 
@@ -102,7 +125,7 @@ function ballCollisions() {
     }
     if (ball.ballY > height - ball.diameter) {
         fill(255);
-        text("Nice one loser press space to restart", width / 2 - 145, height / 2);
+        text("You lose! Press space to restart", width / 2 - 145, height / 2);
         gameLoss = true;
     }
 }
@@ -111,34 +134,17 @@ function keyPressed() {
     if(gameStart == true && key == '1'){
         gameLoss = false;
         gameStart = false;
+        hardMode = false;
         resetEasy();
         score = 0;
 
-        block.blockFillR = 3; 
-        block.blockFillG = 244;
-        block.blockFillB = 252;
-        ball.ballFillR = 3; 
-        ball.ballFillG = 244;
-        ball.ballFillB = 252;
-        plat.PlatFillR = 3; 
-        plat.PlatFillG = 244;
-        plat.PlatFillB = 252;
     }
     if(gameStart == true && key == '2'){
         gameLoss = false;
         gameStart = false;
+        hardMode = true;
         resetHard();
         score = 0;
-
-        block.blockFillR = 252; 
-        block.blockFillG = 3;
-        block.blockFillB = 61;
-        ball.ballFillR = 252; 
-        ball.ballFillG = 3;
-        ball.ballFillB = 61;
-        plat.PlatFillR = 252; 
-        plat.PlatFillG = 3;
-        plat.PlatFillB = 61;
     }
     if(gameLoss == true && key == ' '){
         gameStart = true;
@@ -149,7 +155,7 @@ function keyPressed() {
 }
 
 function resetEasy() {
-    
+
     for(let b = 0; b < blocks.length - 1; b++) {
         let block = blocks[b];
         block.visible = true; 
@@ -175,6 +181,7 @@ function resetHard() {
     ball.ballY = 240;
     ball.ballXSpeed = 6;
     ball.ballYSpeed = 5.25;
+    ball.ballYSpeed = - ball.ballYSpeed;
 
     platform.PlatSpeed = 10;
 

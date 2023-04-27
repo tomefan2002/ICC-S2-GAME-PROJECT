@@ -9,7 +9,7 @@ class Platform {
   }
 
   displayPlat() {
-    fill(this.PlatFillR, this.PlatFillG, this.PlatFillB,70);
+    fill(this.PlatFillR, this.PlatFillG, this.PlatFillB);
     rect(this.PlatX - 32.5, this.PlatY, 75, 18);
   }
 
