@@ -81,7 +81,10 @@ function levelBegin() {
     fill(255);
     text("Score: " + score, 490, 550);
 
-    ball.movementBall();
+    if(gameLoss == false){
+        ball.movementBall();
+    }
+    
     ball.displayBall();
     ballCollisions();
     image(ballimg, ball.ballX - 16, ball.ballY - 16);
