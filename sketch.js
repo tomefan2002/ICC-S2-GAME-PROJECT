@@ -3,6 +3,8 @@ let brickbg;
 let platimg;
 let ballimg;
 let myFont;
+let blockBounceSound;
+let blockBreakSound;
 let blocks = [];
 let PlatX = 600 / 2;
 let PlatY = 600 * 0.75;
@@ -26,6 +28,10 @@ function preload() {
     //IMAGE REFERANCE: https://minecraft.novaskin.me/skin/1683293096/8-Bit-Fireball
     myFont = loadFont('assets/MontserratMediumItalic.otf');
     //FONT REFERANCE: https://www.fontspace.com/montserrat-font-f16544
+    blockBounceSound = loadSound('assets/8bitBounce.wav');
+    //SOUND REFERANCE: https://www.soundsnap.com/sci_fi_interface_accent_retro_video_game_sounding_arcade_sound_2
+    blockBreakSound = loadSound('assets/8bitBreak.wav');
+    //SOUND REFERANCE: https://www.soundsnap.com/gsworsekick3
 }
 
 function setup() {
@@ -105,6 +111,7 @@ function levelBegin() {
 function ballCollisions() {
     if (dist(ball.ballX, ball.ballY, platform.PlatX + 4, platform.PlatY + 12) < ball.diameter * 2) {
         ball.ballYSpeed = -ball.ballYSpeed;
+        blockBounceSound.play();
     }
 
     for (let b = 0; b < blocks.length; b++) {
@@ -113,6 +120,7 @@ function ballCollisions() {
 
         if (dist(ball.ballX, ball.ballY, block.x + (block.width / 2), block.y + (block.height / 2)) < ball.diameter * 1.5 && block.visible) {
             ball.ballYSpeed = -ball.ballYSpeed;
+            blockBreakSound.play();
             block.visible = false;
             score++;
         }
@@ -120,10 +128,12 @@ function ballCollisions() {
 
     if (ball.ballX > width - ball.diameter || ball.ballX < ball.diameter) {
         ball.ballXSpeed = -ball.ballXSpeed;
+        blockBounceSound.play();
     }
 
     if (ball.ballY < ball.diameter) {
         ball.ballYSpeed = - ball.ballYSpeed;
+        blockBounceSound.play();
     }
 
     if (ball.ballY > height - ball.diameter) {
