@@ -53,8 +53,8 @@ function draw() {
         text('Semester 2 Introduction to Creative Coding Project', 20, 90);
         text('By Thomas Lynn 21016998 ', 20, 130);
         textSize(15);
-        text('Bounce the Ball off the Platform to break blocks and win!', 20, 250);
-        text('Use the arrow keys to control the Platform', 20, 290);
+        text('Bounce the ball off the platform to break blocks and win!', 20, 250);
+        text('Use the arrow keys to control the platform', 20, 290);
         textSize(20);
         text('Press 1 for Easy Mode', 20, 450);
         text('Press 2 for Hard Mode', 20, 490);
