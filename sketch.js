@@ -107,7 +107,7 @@ function ballCollisions() {
         ball.ballYSpeed = -ball.ballYSpeed;
     }
 
-    for (let b = 0; b < blocks.length - 1; b++) {
+    for (let b = 0; b < blocks.length; b++) {
 
         let block = blocks[b];
 
@@ -159,13 +159,13 @@ function keyPressed() {
 
 function resetEasy() {
 
-    for (let b = 0; b < blocks.length - 1; b++) {
+    for (let b = 0; b < blocks.length; b++) {
         let block = blocks[b];
         block.visible = true;
     }
 
     ball.ballXSpeed = 4;
-    ball.ballYSpeed = -3.5;
+    ball.ballYSpeed = -7;
     platform.PlatSpeed = 7;
 
     ball.resetBall();
@@ -174,19 +174,18 @@ function resetEasy() {
 
 function resetHard() {
 
-    for (let b = 0; b < blocks.length - 1; b++) {
+    for (let b = 0; b < blocks.length; b++) {
         let block = blocks[b];
         block.visible = true;
     }
+    
     ball.resetBall();
     platform.resetPlat();
 
     ball.ballY = 240;
     ball.ballXSpeed = 7;
-    ball.ballYSpeed = 8;
+    ball.ballYSpeed = 9;
     ball.ballYSpeed = - ball.ballYSpeed;
 
-    platform.PlatSpeed = 10;
-
-
+    platform.PlatSpeed = 12;
 }
