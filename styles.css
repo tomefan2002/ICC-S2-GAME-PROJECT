@@ -1,10 +1,6 @@
-html, body {
-    height:100%;
-}
-
-main {
-    width: 600px;
-    margin: auto;
-    justify-content: center;
-    align-content: center;
+ main { /* gives my 'main' element from index.html styles */
+    width: 600px; /* ensures my canvas's width is 600px */
+    height: 600px; /* ensures my canvas's height is 600px */
+    margin: auto; 
+    justify-content: center; /* centres my canvas in the webpage */
 }
